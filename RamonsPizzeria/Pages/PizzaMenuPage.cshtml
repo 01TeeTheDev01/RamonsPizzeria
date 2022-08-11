@@ -1,0 +1,74 @@
+﻿@page
+@model RamonsPizzeria.Pages.PizzaMenuModel
+
+@{
+    ViewData["Title"] = "Pizza Menu";
+}
+
+<body style="background-color: darkred">
+    <div class="text-center">
+        <div class="mainHeadingText" style="font-family: cursive;">
+            <h1 class="display-4 text-capitalize" style="border-radius: 4px; color: white; font-style:italic;">
+                Choose from our great offerings!
+            </h1>
+            <p class="smallText" style="color: gold; font-style:italic;">
+                <i>
+                    Only one pizza per order!
+                </i>
+            </p>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-3 mt-1">
+                    <div class="w-100 row makeYourOwnDiv">
+                        <div class="col-4">
+                            <img src="~/images/Create.png" class="w-100" />
+                        </div>
+                        <div class="col-8 align-items-center">
+                            <div class="align-middle makeYourOwnText">
+                                <h3 style="text-align: left;">
+                                    Create your own
+                                </h3>
+                                <p style="text-align: left; font-style:italic;" class="text-decoration-underline">
+                                    Make your own pizza your way!
+                                </p>
+                                <a class="btn btn-primary" style="float: left" asp-area="" asp-page="/Forms/CustomPizzaPage">
+                                    Take me there
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @foreach (var pizza in Model.GetPizzaMockDB())
+                {
+                    var imgPath = $"~/images/{@pizza.ImageTitle}.png";
+                    var imgName = @pizza.ImageTitle;
+                    var totalPrice = @pizza.TotalPrice;
+
+                    <div class="col-4 mb-5 mt-1">
+                        <div class="w-100 row makeYourOwnDiv">
+                            <img src="@imgPath"
+                                 class="w-100"
+                                 asp-append-version="true" />
+
+                            <label class="form-label mt-3" style="color: white; font-style:italic;">
+                                @string.Format("{0:c2}", @totalPrice)
+                            </label>
+
+                            <a class="btn btn-primary text-capitalize mt-2"
+                                style="float: left"
+                                asp-area=""
+                                asp-page="/Checkout/CheckoutPage"
+                                asp-route-ImageTitle="@imgName"
+                                asp-route-Price="@totalPrice">
+                                place order
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+

@@ -1,0 +1,58 @@
+﻿@page
+
+@model RamonsPizzeria.Pages.CheckOut.CheckOutModel
+
+@{
+    ViewData["Title"] = "Checkout";
+
+    var imgPath = $"/images/{Model.ImageTitle}.png";
+    var total = Model.Price;
+}
+
+<body style="background-color: darkred">
+    
+    <div class="card text-center">
+
+        <div class="card-header alert-danger" text-capitalize">
+            Your order
+        </div>
+
+        <div class="card-body" style="background-color: black">
+            <!--Place order-->
+            <div class="card-header mb-2 alert-danger text-capitalize">
+                Confirm your order
+            </div>
+
+            <div class="card-body">
+
+                <div class="p-2">
+                    <img src=@imgPath
+                         asp-append-version="true"
+                         width="150"
+                         class="img-thumbnail mb-3"
+                         alt=""
+                         title="@Model.ImageTitle" />
+                </div>
+
+                <div class="mt-3 mb-3 text-capitalize" style="font-family: cursive; color:white">
+                    <h3>@Model.PizzaName</h3>
+                </div>
+
+                <div class="btn">
+                    <a class="btn btn-primary"
+                       asp-area=""
+                       asp-page="/Checkout/ThankYouPage">
+                        Submit order
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-footer alert-danger">
+            <h5>Total: @string.Format("{0:c2}", @total)</h5>
+        </div>
+   
+    </div>
+
+</body>

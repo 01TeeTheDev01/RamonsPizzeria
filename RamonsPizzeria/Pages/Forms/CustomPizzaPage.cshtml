@@ -1,0 +1,189 @@
+﻿@page
+
+@model RamonsPizzeria.Pages.Forms.CustomPizzaModel
+
+@{
+    ViewData["Title"] = "Create your own";
+}
+
+<body style="background-color: darkred">
+
+    <div class="text-center container text-capitalize mb-3" style="font-family: cursive; color:white">
+        <h1>Create your own pizza</h1>
+    </div>
+
+    <div class="card">
+        <div class="card text-center">
+            <div class="card-header alert-danger">
+                Choose your ingredients
+            </div>
+            <div class="card-body" style="background-color: black">
+                <form method="post">
+                    <div class="container">
+                        <!--Pizza Base-->
+                        <div class="card-header mb-2 alert-danger text-capitalize">
+                            base
+                        </div>
+                        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-4">
+                            <div class="col-4">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://onlyglutenfreerecipes.com/wp-content/uploads/2020/06/yeast-free-thin-crust-pizza.-1-600x400.jpg"
+                                         alt=""
+                                         title="Thin pizza base"
+                                         class="img-thumbnail mb-5 mt-5" />
+                                    <input class="form-check"
+                                           type="checkbox"
+                                           checked
+                                           asp-for="@Model.Pizza.ThinBase" />
+                                    <label class="form-label">Thin base</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Sauces-->
+                        <div class="card-header mb-2 alert-danger">
+                            Sauces
+                        </div>
+                        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-4">
+                            <div class="col-4">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://d3cizcpymoenau.cloudfront.net/images/27640/Quick_20Tomato_20Sauce_20for_20Pizza_019.jpg"
+                                         alt=""
+                                         title="Tomato sauce"
+                                         class="img-thumbnail mb-3" />
+                                    <input class="form-check"
+                                           type="checkbox"
+                                           asp-for="@Model.Pizza.TomatoSauce" />
+                                    <label class="form-label">Tomato sauce</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://poormansgourmetkitchen.com/wp-content/uploads/2016/06/Barbecue-Sauce-Main-pic.jpg"
+                                         alt=""
+                                         title="BBQ sauce"
+                                         class="img-thumbnail mb-5 mt-2" />
+                                    <input class="form-check"
+                                           type="checkbox"
+                                           asp-for="@Model.Pizza.BBQSauce" />
+                                    <label class="form-label">BBQ sauce</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://healthyliving.natureloc.com/wp-content/uploads/2016/08/Mayonnaise-Simple-Mayonnaise-Preparation.jpg"
+                                         alt=""
+                                         title="Mayonnaise sauce"
+                                         class="img-thumbnail mb-5 mt-1" />
+                                    <input class="form-check"
+                                           type="checkbox"
+                                           asp-for="@Model.Pizza.MayonnaiseSauce" />
+                                    <label class="form-label">Mayonnaise sauce</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Toppings-->
+                        <div class="card-header mb-2 alert-danger text-capitalize">
+                            toppings
+                        </div>
+                        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 mb-4">
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="http://stockarch.com/files/13/09/grated_cheese.jpg"
+                                         alt=""
+                                         title="grated cheese"
+                                         class="img-thumbnail mb-5 mt-5" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Cheese" />
+                                    <label class="form-label">Grated cheese</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://www.debriar.co.uk/uploads/images/zoom/sliced_pepperoni.jpg"
+                                         alt=""
+                                         title="Pepperoni"
+                                         class="img-thumbnail" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Pepperoni" />
+                                    <label class="form-label">Pepperoni</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://www.porkpie.co.uk/media/catalog/product/cache/1/image/1800x/040ec09b1e35df139433887a97daa66f/s/m/smoked-dry-cured-bacon-502-cooked_1.jpg"
+                                         alt=""
+                                         title="Bacon"
+                                         class="img-thumbnail mb-5" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Bacon" />
+                                    <label class="form-label">Bacon</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://2.bp.blogspot.com/-nuiZclNg4aE/Uhx3HVHa3_I/AAAAAAAAE1k/hA9OSiSUYZQ/s1600/chilliBeef5.JPG"
+                                         alt=""
+                                         title="Beef strips"
+                                         class="img-thumbnail mb-5 mt-5" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Beef" />
+                                    <label class="form-label">Beef strips</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://www.kff.co.uk/images_products/HD_black-olives-sliced.jpg"
+                                         alt=""
+                                         title="Sliced olives"
+                                         class="img-thumbnail mb-5 mt-5" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Olives" />
+                                    <label class="form-label">Sliced olives</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://cdn.apartmenttherapy.info/image/fetch/f_auto,q_auto:eco,w_1460/https:%2F%2Fstorage.googleapis.com%2Fgen-atmedia%2F3%2F2013%2F01%2Fc870672502b511f9fd51b05f6e3fced1182f4e7f.jpeg"
+                                         alt=""
+                                         title="Chopped pineapple"
+                                         class="img-thumbnail mb-4" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Pineapples" />
+                                    <label class="form-label">Chopped pineapple</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://thumbs.dreamstime.com/b/fresh-slices-bell-peppers-different-colors-bowl-colorful-pepper-ready-to-process-32854789.jpg"
+                                         alt=""
+                                         title="Sliced peppers"
+                                         class="img-thumbnail mb-5 mt-5" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Peppers" />
+                                    <label class="form-label">Sliced peppers</label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="p-3 border bg-dark" style="font-family: cursive; color:white">
+                                    <img src="https://www.healthyseasonalrecipes.com/wp-content/uploads/2018/12/how-to-cut-an-onion-106.jpg"
+                                         alt=""
+                                         title="Diced onions"
+                                         class="img-thumbnail mb-5" />
+                                    <input class="form-check" type="checkbox" asp-for="@Model.Pizza.Onions" />
+                                    <label class="form-label">Diced onions</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Place order-->
+                        <div class="card-header mb-2 mt-3 alert-danger text-capitalize">
+                            Place order
+                        </div>
+                        <div class="btn">
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Proceed to checkout
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
