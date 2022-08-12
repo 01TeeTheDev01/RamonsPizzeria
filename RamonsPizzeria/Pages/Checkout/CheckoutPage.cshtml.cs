@@ -8,9 +8,9 @@ namespace RamonsPizzeria.Pages.CheckOut
     [BindProperties(SupportsGet = true)]
     public class CheckOutModel : PageModel
     {
-        public string PizzaName { get; set; }
-        public string ImageTitle { get; set; }
-        public decimal Price { get; set; }
+        public string PizzaName { get; set; } = string.Empty;
+        public string ImageTitle { get; set; } = string.Empty;
+        public static decimal Price { get; set; }
 
         public void OnGet(PizzasModel model)
         {
@@ -18,9 +18,8 @@ namespace RamonsPizzeria.Pages.CheckOut
             {
                 var list = new PizzaMenuModel().GetPizzaMockDB();
 
-
                 if (string.IsNullOrEmpty(model.PizzaName) && string.IsNullOrWhiteSpace(model.PizzaName) &&
-                string.IsNullOrEmpty(model.ImageTitle) && string.IsNullOrWhiteSpace(model.ImageTitle))
+                    string.IsNullOrEmpty(model.ImageTitle) && string.IsNullOrWhiteSpace(model.ImageTitle))
                 {
                     PizzaName = "tee's custom pizza";
                     ImageTitle = "Create";
@@ -40,7 +39,7 @@ namespace RamonsPizzeria.Pages.CheckOut
             }
             catch (Exception ex)
             {
-                RedirectToPage("/Error", ex);
+                RedirectToPage("/Error", new { ex.Source, ex.Message });
             }
         }
     }

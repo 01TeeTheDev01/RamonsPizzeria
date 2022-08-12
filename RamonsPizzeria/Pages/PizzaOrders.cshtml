@@ -1,0 +1,56 @@
+﻿@page
+
+@model RamonsPizzeria.Pages.OrdersModel
+
+@{
+    ViewData["Title"] = "Pizza Orders";
+}
+
+<body style="background-color: darkred">
+
+    <div class="text-center">
+
+        <div class="mainHeadingText" style="font-family: cursive;">
+            <h1 class="display-4 text-capitalize" style="border-radius: 4px; color: white; font-style:italic;">
+                Our orders
+            </h1>
+            
+            <p class="smallText" style="color: gold; font-style:italic;">
+                <i>
+                    Only one pizza per order!
+                </i>
+            </p>
+
+            <hr style="color: white;" />
+        </div>
+    </div>
+
+    <div class="text-center">
+        <div class="mainSub">
+            <h5 class="display-6 text-capitalize" style="border-radius: 4px; color: white; font-style:italic; font-family: cursive;">
+                @DateTime.Now.ToLongDateString()
+            </h5>
+        </div>
+
+        <div class="container mt-4">
+
+            <table class="table alert-danger">
+                <tr>
+                    <th>Order no.</th>
+                    <th>Pizza name</th>
+                    <th>Price</th>
+                    <th>Time</th>
+                </tr>
+                @foreach(var order in Model.GetPizzaOrders())
+                {
+                    <tr>
+                        <td>@order.Id</td>
+                        <td>@order.Name</td>
+                        <td>@order.Price</td>
+                        <td>@string.Format("{0:hh:MM:ss}", @order.TimeOfOrder)</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</body>

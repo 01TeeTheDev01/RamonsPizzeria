@@ -1,4 +1,5 @@
 ﻿@page
+@using RamonsPizzeria.Pages.CheckOut
 
 @model RamonsPizzeria.Pages.CheckOut.CheckOutModel
 
@@ -6,7 +7,8 @@
     ViewData["Title"] = "Checkout";
 
     var imgPath = $"/images/{Model.ImageTitle}.png";
-    var total = Model.Price;
+
+    var total = @CheckOutModel.Price;
 }
 
 <body style="background-color: darkred">
@@ -34,14 +36,17 @@
                          title="@Model.ImageTitle" />
                 </div>
 
-                <div class="mt-3 mb-3 text-capitalize" style="font-family: cursive; color:white">
+                <div class="mt-3 mb-3 text-capitalize"
+                     style="font-family: cursive; color:white">
                     <h3>@Model.PizzaName</h3>
                 </div>
 
                 <div class="btn">
                     <a class="btn btn-primary"
                        asp-area=""
-                       asp-page="/Checkout/ThankYouPage">
+                       asp-page="/Checkout/ThankYouPage"
+                       asp-route-ImageTitle="@Model.ImageTitle"
+                       asp-route-Price="@total">
                         Submit order
                     </a>
                 </div>

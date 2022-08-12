@@ -4,7 +4,7 @@
     {
         public string ImageTitle { get; set; } = string.Empty;
         public string PizzaName { get; set; } = string.Empty;
-        public float BasePrice { get; set; }
+        public float BasePrice { get; set; } = 0f;
         public bool TomatoSauce { get; set; }
         public bool ThinBase { get; set; }
         public bool Cheese { get; set; }
