@@ -71,7 +71,9 @@ namespace RamonsPizzeria.Pages.CheckOut
                     Id = OrderId,
                     Name = OrderName,
                     Price = OrderPrice,
-                    TimeOfOrder = DateTime.Now.ToUniversalTime()
+                    TimeOfOrder = DateTime.Now,
+                    IsOrderReady = false,
+                    Duration = DateTime.Now.AddMinutes(30)
                 });
             }
         }

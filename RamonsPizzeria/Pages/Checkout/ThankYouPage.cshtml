@@ -1,4 +1,6 @@
 ﻿@page
+@using RamonsPizzeria.Models
+
 @model RamonsPizzeria.Pages.CheckOut.ThankYouModel
 
 @{
@@ -24,7 +26,7 @@
 
             <div class="card-body">
 
-                @if (!string.IsNullOrEmpty(Model.OrderImageName) && !string.IsNullOrWhiteSpace(Model.OrderImageName))
+                @if (!string.IsNullOrEmpty(Model.OrderImageName) && !string.IsNullOrWhiteSpace(Model.OrderImageName) && Model.OrderName == "Tee's Custom Pizza")
                 {
                     <div class="p-2">
                         <img src=@orderImage
@@ -36,17 +38,42 @@
                     </div>
 
                     <div class="mt-1 mb-3 text-capitalize"
-                         style="font-family: cursive; color:white">
+                     style="font-family: cursive; color:white">
                         <h3>@orderName</h3>
                     </div>
 
+                    <div class="mt-1 mb-3 text-capitalize"
+                     style="font-family: cursive; color:gold">
+                        <h4 class="text-decoration-underline">
+                            Ingredients
+                        </h4>
+                    </div>
+
+                    <div class="mt-1 mb-3 text-capitalize"
+                     style="font-family: cursive; color:white">
+                        @if (MockIngredientsDB.Ingredients != null)
+                            @foreach (var ingredient in MockIngredientsDB.Ingredients)
+                            {
+                                <h6>@ingredient</h6>
+                            }
+                    </div>
+
                     <div class="mt-3 mb-3 text-capitalize"
-                         style="font-family: cursive; color: gold">
+                     style="font-family: cursive; color: gold">
                         <h5><em>Will be ready in the next 15-30min!</em></h5>
                     </div>
                 }
                 else
                 {
+                    <div class="p-2">
+                        <img src=@orderImage
+                         asp-append-version="true"
+                         width="150"
+                         class="img-thumbnail mb-3"
+                         alt=""
+                         title="@Model.OrderImageName" />
+                    </div>
+
                     <div class="mt-1 mb-3 text-capitalize"
                      style="font-family: cursive; color:white">
                         <h3>@orderName</h3>

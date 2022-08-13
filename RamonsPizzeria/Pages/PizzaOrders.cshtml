@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "Pizza Orders";
+    TimeSpan timeRemaining = TimeSpan.Zero;
 }
 
 <body style="background-color: darkred">
@@ -12,7 +13,7 @@
 
         <div class="mainHeadingText" style="font-family: cursive;">
             <h1 class="display-4 text-capitalize" style="border-radius: 4px; color: white; font-style:italic;">
-                Our orders
+                @DateTime.Now.ToLongDateString() orders
             </h1>
             
             <p class="smallText" style="color: gold; font-style:italic;">
@@ -25,10 +26,12 @@
         </div>
     </div>
 
-    <div class="text-center">
+    <!--Order placed table-->
+    <div class="text-center mb-5">
+        
         <div class="mainSub">
-            <h5 class="display-6 text-capitalize" style="border-radius: 4px; color: white; font-style:italic; font-family: cursive;">
-                @DateTime.Now.ToLongDateString()
+            <h5 class="text-decoration-underline display-6 text-capitalize" style="border-radius: 4px; color: white; font-style:italic; font-family: cursive;">
+                On the way!
             </h5>
         </div>
 
@@ -39,18 +42,84 @@
                     <th>Order no.</th>
                     <th>Pizza name</th>
                     <th>Price</th>
-                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Order Time</th>
+                    <th>Ready in</th>
                 </tr>
                 @foreach(var order in Model.GetPizzaOrders())
                 {
-                    <tr>
-                        <td>@order.Id</td>
-                        <td>@order.Name</td>
-                        <td>@order.Price</td>
-                        <td>@string.Format("{0:hh:MM:ss}", @order.TimeOfOrder)</td>
-                    </tr>
+                    timeRemaining = @order.Duration.Subtract(DateTime.Now);
+
+                    if (timeRemaining.Minutes >= 0 && timeRemaining.Seconds >= 0)
+                    {
+                        if (timeRemaining.Minutes == 0 && timeRemaining.Seconds == 0)
+                        {
+                            order.IsOrderReady = true;
+                        }
+
+                        if (!order.IsOrderReady)
+                        {
+                            <tr>
+                                <td>@order.Id</td>
+                                <td>@order.Name</td>
+                                <td>@string.Format("{0:c}", @order.Price)</td>
+                                @if (timeRemaining.Minutes < 5)
+                                {
+                                    <td style="background-color: orange; color:white">
+                                        On the way
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="background-color: red; color:white">
+                                        On the way
+                                    </td>
+                                }
+                                <td>@string.Format("{0:HH:mm:ss}", @order.TimeOfOrder)</td>
+                                <td>@string.Format("{0}min {1}sec", timeRemaining.Minutes, timeRemaining.Seconds)</td>
+                            </tr>
+                        }
+                    }
                 }
             </table>
         </div>
+
     </div>
+
+    <!--Ready for collection table-->
+    <div class="text-center">
+        <div class="mainSub">
+            <h5 class=" text-decoration-underline display-6 text-capitalize" style="border-radius: 4px; color: white; font-style:italic; font-family: cursive;">
+                Ready!
+            </h5>
+        </div>
+
+        <div class="container mt-4">
+
+            <table class="table alert-danger">
+                <tr>
+                    <th>Order no.</th>
+                    <th>Pizza name</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Order Time</th>
+                </tr>
+                @foreach (var order in Model.GetPizzaOrders())
+                {
+                    if (order.IsOrderReady)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.Name</td>
+                            <td>@string.Format("{0:c}", @order.Price)</td>
+                            <td style="background-color: green; color:white">
+                                Ready
+                            </td>
+                            <td>@string.Format("{0:HH:mm:ss}", @order.TimeOfOrder)</td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div> 
 </body>

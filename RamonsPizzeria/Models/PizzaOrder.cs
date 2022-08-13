@@ -5,6 +5,8 @@
         public int Id { get; set; } = 0;
         public string Name { get; set; } = string.Empty;
         public decimal Price { get; set; } = 0.0m;
-        public DateTime TimeOfOrder { get; set; } = DateTime.MinValue;
+        public DateTime TimeOfOrder { get; set; }
+        public bool IsOrderReady { get; set; }
+        public DateTime Duration { get; set; }
     }
 }

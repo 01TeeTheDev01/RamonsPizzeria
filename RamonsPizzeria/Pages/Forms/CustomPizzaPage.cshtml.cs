@@ -25,6 +25,12 @@ namespace RamonsPizzeria.Pages.Forms
                               thinBasePrice = 19.99m, 
                               tomatoSauce = 6.50m;
 
+        private readonly MockIngredientsDB db;
+        public CustomPizzaModel()
+        {
+            db = new MockIngredientsDB();
+        }
+
         public void OnGet()
         {
 
@@ -35,40 +41,76 @@ namespace RamonsPizzeria.Pages.Forms
             try
             {
                 if (Pizza.Onions)
+                {
                     TempPrice += onionPrice;
+                    db.AddIngredient(nameof(Pizza.Onions));
+                }
 
                 if (Pizza.BBQSauce)
+                {
                     TempPrice += bbqSaucePrice;
+                    db.AddIngredient(nameof(Pizza.BBQSauce));
+                }
 
                 if (Pizza.MayonnaiseSauce)
+                {
                     TempPrice += mayoSaucePrice;
+                    db.AddIngredient(nameof(Pizza.MayonnaiseSauce));
+                }
 
                 if (Pizza.Pineapples)
+                {
                     TempPrice += pineapplePrice;
+                    db.AddIngredient(nameof(Pizza.Pineapples));
+                }
 
                 if (Pizza.Bacon)
+                {
                     TempPrice += baconPrice;
+                    db.AddIngredient(nameof(Pizza.Bacon));
+                }
 
                 if (Pizza.Beef)
+                {
                     TempPrice += beefPrice;
+                    db.AddIngredient(nameof(Pizza.Beef));
+                }
 
                 if (Pizza.Cheese)
+                {
                     TempPrice += cheesePrice;
+                    db.AddIngredient(nameof(Pizza.Cheese));
+                }
 
                 if (Pizza.Olives)
+                {
                     TempPrice += olivesPrice;
+                    db.AddIngredient(nameof(Pizza.Olives));
+                }
 
                 if (Pizza.Pepperoni)
+                {
                     TempPrice += pepperoniPrice;
+                    db.AddIngredient(nameof(Pizza.Pepperoni));
+                }
 
                 if (Pizza.Peppers)
+                {
                     TempPrice += pepperPrice;
+                    db.AddIngredient(nameof(Pizza.Peppers));
+                }
 
                 if (Pizza.ThinBase)
+                {
                     TempPrice += thinBasePrice;
+                    db.AddIngredient(nameof(Pizza.ThinBase));
+                }
 
                 if (Pizza.TomatoSauce)
+                {
                     TempPrice += tomatoSauce;
+                    db.AddIngredient(nameof(Pizza.TomatoSauce));
+                }
 
                 Pizza.TotalPrice = TempPrice;
 

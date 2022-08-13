@@ -36,6 +36,8 @@ namespace RamonsPizzeria.Pages.CheckOut
                         Price = pizza.TotalPrice;
                     }
                 }
+
+
             }
             catch (Exception ex)
             {
